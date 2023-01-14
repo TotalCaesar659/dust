@@ -4,16 +4,24 @@
 
 [![Build and test status](https://github.com/Kelpsy/dust/actions/workflows/.github/workflows/run-clippy-and-test.yml/badge.svg?branch=main&event=push)](https://github.com/Kelpsy/dust/actions/workflows/run-clippy-and-test.yml?query=branch%3Amain+event%3Apush)
 
-## Prebuilt binaries and web version
+## Web version
 
 [![Web deploy status](https://github.com/Kelpsy/dust/actions/workflows/.github/workflows/deploy-web.yml/badge.svg?branch=main&event=push)](https://github.com/Kelpsy/dust/actions/workflows/deploy-web.yml?query=branch%3Amain+event%3Apush)
 
 [Web frontend](https://dust-emu.netlify.app)
 
+## Prebuilt native binaries
+
+There are three versions available for each operating system:
+- Release: only includes details useful to an end user
+- Debug: includes logging and debugging views that could be useful for game developers or to do some simple analysis on game behavior
+- Debug + GDB server: includes everything in the debug version, plus a stub to connect a GDB client enabled for 32-bit ARM targets directly to the emulator, enabling more advanced interaction and debugging of the emulated CPU
+
+Do note that *none* of these versions include debug symbols for the emulator itself; they are all compiled with the same set of optimizations and LTO, and aren't suitable for debugging of the emulator; for that purpose, the only solution at the moment is a local build using the `release` profile must be used (`debug` profile builds are currently unstable due to an upstream Rust issue); accordingly, debug symbols are already enabled in `Cargo.toml`.
 
 [![Release build status](https://github.com/Kelpsy/dust/actions/workflows/.github/workflows/build-release.yml/badge.svg?branch=main&event=push)](https://github.com/Kelpsy/dust/actions/workflows/build-release.yml?query=branch%3Amain+event%3Apush)
 
-| Release | Debug (includes logging and debugging views) | Debug + GDB server |
+| Release | Debug | Debug + GDB server |
 | ------- | -------------------------------------------- | ------------------ |
 | [Windows (release)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Windows.zip) | [Windows (debug)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Windows-debug.zip) | [Windows (debug + GDB)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Windows-debug-gdb.zip) |
 | [Linux (release)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Linux.zip) | [Linux (debug)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Linux-debug.zip) | [Linux (debug + GDB)](https://nightly.link/Kelpsy/dust/workflows/build-release/main/Linux-debug-gdb.zip) |
